@@ -9,7 +9,8 @@
   firebase.initializeApp(config);
 
 
-
+ var database = firebase.database();
+ 
 database.ref().on("child_added", function(snapshot) {
       // storing the snapshot.val() in a variable for convenience
       var data = snapshot.val();
