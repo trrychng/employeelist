@@ -10,14 +10,14 @@
 
 
  var database = firebase.database();
- 
+
 database.ref().on("child_added", function(snapshot) {
       // storing the snapshot.val() in a variable for convenience
       var data = snapshot.val();
 
       // Console.loging the last user's data
       console.log(data.name);
-      console.log(data.email);
+      console.log(data.role);
       console.log(data.sdate);
       console.log(data.rate);
 
@@ -41,14 +41,14 @@ var eRate;
 
 
 //sumbit function of employee data and push to firebase
-$("#submit-employee").on("click", function() {
+$("#submit").on("click", function() {
     event.preventDefault();
 
-    eName= parseInt($("#eName").val().trim());
-    eRole= parseInt($("#eRole").val().trim());
-    eStart= parseInt($("#eStart").val().trim());
-    eRate= parseInt($("#eRate").val().trim());
-    console.log(eName+eRate+eRole+eStart);
+    eName= $("#eName").val().trim();
+    eRole= $("#eRole").val().trim();
+    eStart= $("#eStart").val().trim();
+    eRate= $("#eRate").val().trim();
+     console.log(eName);
 	 database.ref().push({
         name: eName,
         role: eRole,
