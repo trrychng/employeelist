@@ -10,47 +10,21 @@
 
 
 
+database.ref().on("child_added", function(snapshot) {
+      // storing the snapshot.val() in a variable for convenience
+      var data = snapshot.val();
 
+      // Console.loging the last user's data
+      console.log(data.name);
+      console.log(data.email);
+      console.log(data.sdate);
+      console.log(data.rate);
 
+ 
 
-
-
-
-
-
-database.ref().on("value", function(snapshot) {
-
-  // If Firebase has a highPrice and highBidder stored (first case)
-  if (snapshot.child("highBidder").exists() && snapshot.child("highPrice").exists()) {
-    // Set the variables for highBidder/highPrice equal to the stored values.
-    highBidder = snapshot.val().highBidder;
-    highPrice = parseInt(snapshot.val().highPrice);
-
-    // Change the text inside the HTML element to reflect the initial value
-    $("#highest-bidder").text(snapshot.val().highBidder);
-    $("#highest-price").text("$" + snapshot.val().highPrice);
-
-    // Print the data to the console.
-    console.log(snapshot.val().highBidder);
-    console.log(snapshot.val().highPrice);
-  }
-
-  // Keep the variables for highBidder/highPrice equal to the initial values
-  else {
-
-    // Change the HTML to reflect the initial value
-    $("#highest-bidder").text(highBidder);
-    $("#highest-price").text("$" + highPrice);
-
-    // Print the initial data to the console.
-    console.log("Current High Price");
-    console.log(highBidder);
-    console.log(highPrice);
-  }
-
-  // If any errors are experienced, log them to console.
-}, function(errorObject) {
-  console.log("The read failed: " + errorObject.code);
+      // Handle the errors
+    }, function(errorObject) {
+      console.log("Errors handled: " + errorObject.code);
 });
 
 
